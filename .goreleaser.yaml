@@ -1,0 +1,41 @@
+env:
+  - CGO_ENABLED=0
+
+builds:
+  - main: ./tcp/
+    binary: "main"
+    id: "tcp"
+    goos:
+      - linux
+    goarch:
+      - amd64
+      - arm64
+      - ppc64le
+      - s390x
+    flags:
+      - -trimpath
+    gcflags:
+      - all=-trimpath={{.Env.GOPATH}}
+    asmflags:
+      - all=-trimpath={{.Env.GOPATH}}
+    ldflags:
+      - -s -w -X main.version={{.Version}}
+
+  - main: ./udp/
+    binary: "main"
+    id: "udp"
+    goos:
+      - linux
+    goarch:
+      - amd64
+      - arm64
+      - ppc64le
+      - s390x
+    flags:
+      - -trimpath
+    gcflags:
+      - all=-trimpath={{.Env.GOPATH}}
+    asmflags:
+      - all=-trimpath={{.Env.GOPATH}}
+    ldflags:
+      - -s -w -X main.version={{.Version}}
