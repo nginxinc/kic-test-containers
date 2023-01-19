@@ -16,4 +16,4 @@ run-docker-udp:
 	docker run -p 3334:3334 -it udp-server
 
 run-docker-grpc:
-	docker run -p 10000:10000 -it grpc-server
+	docker run -p 50051:50051 -it grpc-server

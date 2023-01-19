@@ -5,7 +5,7 @@ This repository contains the Dockerfiles and code for the test containers used i
 ### Building the containers for local testing
 For each container, run the following command from the root of the repository:
 ```
-docker build -t <container-name> .
+docker build -t <container-name> -f <container-type>/Dockerfile .
 ```
 
 
@@ -15,4 +15,4 @@ make grpc-server
 ```
 
 ### Publishing the containers
-The containers are published to the [NGINX GitHub Container Registry](https://github.com/orgs/nginxinc/packages) when a new tag is created in this repository. You can see the packages on the right side of this page.
+The containers are published to the [NGINX GitHub Container Registry](https://github.com/orgs/nginxinc/packages?repo_name=kic-test-containers) when a new tag is created in this repository. You can see the packages on the right side of this page.
