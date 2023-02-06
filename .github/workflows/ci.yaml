@@ -91,7 +91,7 @@ jobs:
               org.opencontainers.image.description=KIC Test ${{ matrix.type }} Server
 
         - name: Build Docker image
-          uses: docker/build-push-action@v3
+          uses: docker/build-push-action@v4
           id: build-push
           with:
             file: ${{ matrix.type }}/Dockerfile
@@ -154,7 +154,7 @@ jobs:
               org.opencontainers.image.description=KIC Test gRPC Server
 
         - name: Build Docker image
-          uses: docker/build-push-action@v3
+          uses: docker/build-push-action@v4
           id: build-push
           with:
             file: grpc/Dockerfile
