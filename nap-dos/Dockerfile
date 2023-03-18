@@ -52,18 +52,18 @@ RUN apt-get -y purge gcc \
   && apt-get -y purge grub-common --allow-remove-essential \
   && apt-get -y purge ncurses-term --allow-remove-essential \
   && apt-get -y purge manpages-dev \
-  && apt-get -y purge grub-pc-bin --allow-remove-essential \
+  # && apt-get -y purge grub-pc-bin --allow-remove-essential \
   && apt-get -y autoremove \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* \
-     /tmp/* \
-     /var/tmp/*
+  /tmp/* \
+  /var/tmp/*
 WORKDIR /root
 RUN mkdir /var/run/sshd \
-    && echo 'root:default' | chpasswd \
-    && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
-    && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd \
-    && echo "export VISIBLE=now" >> /etc/profile
+  && echo 'root:default' | chpasswd \
+  && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
+  && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd \
+  && echo "export VISIBLE=now" >> /etc/profile
 EXPOSE 22
 EXPOSE 80
 EXPOSE 8080
@@ -71,9 +71,9 @@ EXPOSE 8090
 EXPOSE 9090
 EXPOSE 1812/udp
 EXPOSE 1813/udp
-COPY flaskserver.py /root
-COPY webserver.py /root
-COPY entrypoint.sh /root
+COPY nap-dos/flaskserver.py /root
+COPY nap-dos/webserver.py /root
+COPY nap-dos/entrypoint.sh /root
 RUN chmod +x /root/entrypoint.sh
 WORKDIR /root
 CMD /root/entrypoint.sh && tail -f /dev/null

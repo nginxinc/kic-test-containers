@@ -114,7 +114,10 @@ jobs:
           with:
             image: ${{ steps.meta.outputs.tags }}
             only-fixed: true
-            output-format: table
+        - name: upload Anchore scan SARIF report
+          uses: github/codeql-action/upload-sarif@v2
+          with:
+            sarif_file: ${{ steps.scan.outputs.sarif }}
 
     build-grpc:
       name: Build Docker Image gRPC
@@ -176,4 +179,72 @@ jobs:
           with:
             image: ${{ steps.meta.outputs.tags }}
             only-fixed: true
-            output-format: table
+        - name: upload Anchore scan SARIF report
+          uses: github/codeql-action/upload-sarif@v2
+          with:
+            sarif_file: ${{ steps.scan.outputs.sarif }}
+
+    build-dos-server:
+      name: Build Docker Image DOS Server
+      runs-on: ubuntu-22.04
+      steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v3
+
+        - name: Setup QEMU
+          uses: docker/setup-qemu-action@v2
+          with:
+            platforms: arm64,ppc64le,s390x
+          if: github.event_name != 'pull_request'
+
+        - name: Docker Buildx
+          uses: docker/setup-buildx-action@v2
+
+        - name: Login to GitHub Container Registry
+          uses: docker/login-action@v2
+          with:
+            registry: ghcr.io
+            username: ${{ github.repository_owner }}
+            password: ${{ secrets.GITHUB_TOKEN }}
+          if: github.event_name != 'pull_request'
+
+        - name: Docker meta
+          id: meta
+          uses: docker/metadata-action@v4
+          with:
+            images: |
+              ghcr.io/nginxinc/kic-test-dos-server
+            tags: |
+              type=edge
+              type=ref,event=pr
+              type=semver,pattern={{version}}
+            labels: |
+              org.opencontainers.image.description=KIC Test DOS Server
+
+        - name: Build Docker image
+          uses: docker/build-push-action@v4
+          id: build-push
+          with:
+            file: nap-dos/Dockerfile
+            context: '.'
+            cache-from: type=gha,scope=dos-server
+            cache-to: type=gha,scope=dos-server,mode=max
+            tags: ${{ steps.meta.outputs.tags }}
+            labels: ${{ steps.meta.outputs.labels }}
+            platforms: ${{ github.event_name != 'pull_request' && env.PLATFORMS || '' }}
+            load: ${{ github.event_name == 'pull_request' }}
+            push: ${{ github.event_name != 'pull_request' }}
+            pull: true
+            no-cache: ${{ github.event_name != 'pull_request' }}
+
+        - name: Run Grype vulnerability scanner
+          uses: anchore/scan-action@v3
+          continue-on-error: true
+          id: scan
+          with:
+            image: ${{ steps.meta.outputs.tags }}
+            only-fixed: true
+        - name: upload Anchore scan SARIF report
+          uses: github/codeql-action/upload-sarif@v2
+          with:
+            sarif_file: ${{ steps.scan.outputs.sarif }}
