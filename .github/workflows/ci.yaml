@@ -112,8 +112,9 @@ jobs:
           continue-on-error: true
           id: scan
           with:
-            image: ${{ steps.meta.outputs.tags }}
+            image: ghcr.io/nginxinc/kic-test-${{ matrix.type }}-server:${{ steps.meta.outputs.version }}
             only-fixed: true
+            add-cpes-if-none: true
         - name: upload Anchore scan SARIF report
           uses: github/codeql-action/upload-sarif@v2
           with:
@@ -177,8 +178,9 @@ jobs:
           continue-on-error: true
           id: scan
           with:
-            image: ${{ steps.meta.outputs.tags }}
+            image: ghcr.io/nginxinc/kic-test-grpc-server:${{ steps.meta.outputs.version }}
             only-fixed: true
+            add-cpes-if-none: true
         - name: upload Anchore scan SARIF report
           uses: github/codeql-action/upload-sarif@v2
           with:
@@ -242,8 +244,9 @@ jobs:
           continue-on-error: true
           id: scan
           with:
-            image: ${{ steps.meta.outputs.tags }}
+            image: ghcr.io/nginxinc/kic-test-dos-server:${{ steps.meta.outputs.version }}
             only-fixed: true
+            add-cpes-if-none: true
         - name: upload Anchore scan SARIF report
           uses: github/codeql-action/upload-sarif@v2
           with:
