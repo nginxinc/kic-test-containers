@@ -1,0 +1,21 @@
+name: Create Release Draft
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  draft-release:
+    name: Create Release Draft
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Create/Update Draft
+        uses: lucacome/draft-release@v0.1.1
+        with:
+          minor-label: 'enhancement'
+          major-label: 'change'
