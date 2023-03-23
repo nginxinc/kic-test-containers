@@ -34,3 +34,17 @@ updates:
       interval: weekly
     reviewers:
       - "nginxinc/kic"
+
+  - package-ecosystem: "docker"
+    directory: "/nap-dos"
+    schedule:
+      interval: weekly
+    reviewers:
+      - "nginxinc/kic"
+
+  - package-ecosystem: "pip"
+    directory: "/nap-dos"
+    schedule:
+      interval: weekly
+    reviewers:
+      - "nginxinc/kic"

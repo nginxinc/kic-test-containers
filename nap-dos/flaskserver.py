@@ -1,8 +1,6 @@
-#!/usr/bin/env python
 import time
-from multiprocessing import Process
 
-from flask import Flask, Response, jsonify, make_response, redirect, request
+from flask import Flask, make_response, request
 
 app = Flask(__name__)
 global_log = []
