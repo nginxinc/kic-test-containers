@@ -1,3 +1,3 @@
 module github.com/nginxinc/kic-test-containers
 
-go 1.19
+go 1.20
