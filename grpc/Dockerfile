@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.5
-FROM golang:1.20 as builder
+FROM golang:1.21 as builder
 
 RUN GO111MODULE=off go get google.golang.org/grpc/examples/helloworld/greeter_server
 WORKDIR /go/src/google.golang.org/grpc/examples/helloworld/greeter_server
