@@ -23,7 +23,7 @@ jobs:
       runs-on: ubuntu-22.04
       steps:
         - name: Checkout Repository
-          uses: actions/checkout@v3
+          uses: actions/checkout@v4
           with:
             fetch-depth: 0
         - name: Setup Golang Environment
@@ -54,7 +54,7 @@ jobs:
           type: [tcp, udp]
       steps:
         - name: Checkout Repository
-          uses: actions/checkout@v3
+          uses: actions/checkout@v4
         - name: Fetch Cached Artifacts
           uses: actions/cache@v3
           with:
@@ -125,7 +125,7 @@ jobs:
       runs-on: ubuntu-22.04
       steps:
         - name: Checkout Repository
-          uses: actions/checkout@v3
+          uses: actions/checkout@v4
 
         - name: Setup QEMU
           uses: docker/setup-qemu-action@v2
@@ -191,7 +191,7 @@ jobs:
       runs-on: ubuntu-22.04
       steps:
         - name: Checkout Repository
-          uses: actions/checkout@v3
+          uses: actions/checkout@v4
 
         - name: Setup QEMU
           uses: docker/setup-qemu-action@v2
