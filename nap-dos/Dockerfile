@@ -1,4 +1,4 @@
-FROM python:3.11-alpine
+FROM python:3.12-alpine
 
 COPY nap-dos/flaskserver.py .
 COPY nap-dos/requirements.txt .
