@@ -40,7 +40,7 @@ jobs:
             GOPATH: ${{ needs.checks.outputs.go_path }}
 
         - name: Store Artifacts in Cache
-          uses: actions/cache@v3
+          uses: actions/cache@v4
           with:
             path: ${{ github.workspace }}/dist
             key: test-containers-${{ github.run_id }}-${{ github.run_number }}
@@ -56,7 +56,7 @@ jobs:
         - name: Checkout Repository
           uses: actions/checkout@v4
         - name: Fetch Cached Artifacts
-          uses: actions/cache@v3
+          uses: actions/cache@v4
           with:
             path: ${{ github.workspace }}/dist
             key: test-containers-${{ github.run_id }}-${{ github.run_number }}
