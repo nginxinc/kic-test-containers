@@ -1,9 +1,9 @@
 # syntax=docker/dockerfile:1.5
 FROM golang:1.22 as builder
 
-RUN GO111MODULE=off go get google.golang.org/grpc/examples/helloworld/greeter_server
-WORKDIR /go/src/google.golang.org/grpc/examples/helloworld/greeter_server
-RUN CGO_ENABLED=0 go build -o /greeter_server
+RUN git clone -b v1.63.0 --depth 1 https://github.com/grpc/grpc-go
+WORKDIR /go/grpc-go/examples
+RUN CGO_ENABLED=0 go build -C helloworld/greeter_server -o /greeter_server
 
 FROM scratch
 COPY --from=builder /greeter_server /
