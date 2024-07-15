@@ -108,7 +108,7 @@ jobs:
             no-cache: ${{ github.event_name != 'pull_request' }}
 
         - name: Run Grype vulnerability scanner
-          uses: anchore/scan-action@v3
+          uses: anchore/scan-action@v4
           continue-on-error: true
           id: scan
           with:
@@ -174,7 +174,7 @@ jobs:
             no-cache: ${{ github.event_name != 'pull_request' }}
 
         - name: Run Grype vulnerability scanner
-          uses: anchore/scan-action@v3
+          uses: anchore/scan-action@v4
           continue-on-error: true
           id: scan
           with:
@@ -240,7 +240,7 @@ jobs:
             no-cache: ${{ github.event_name != 'pull_request' }}
 
         - name: Run Grype vulnerability scanner
-          uses: anchore/scan-action@v3
+          uses: anchore/scan-action@v4
           continue-on-error: true
           id: scan
           with:
