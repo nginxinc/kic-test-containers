@@ -1,7 +1,7 @@
-# syntax=docker/dockerfile:1.5
-FROM golang:1.23 as builder
+# syntax=docker/dockerfile:1.9
+FROM golang:1.23 AS builder
 
-RUN git clone -b v1.63.0 --depth 1 https://github.com/grpc/grpc-go
+RUN git clone -b v1.65.0 --depth 1 https://github.com/grpc/grpc-go
 WORKDIR /go/grpc-go/examples
 RUN CGO_ENABLED=0 go build -C helloworld/greeter_server -o /greeter_server
 

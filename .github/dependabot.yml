@@ -15,28 +15,8 @@ updates:
       - "nginxinc/kic"
 
   - package-ecosystem: "docker"
-    directory: "/grpc"
-    schedule:
-      interval: weekly
-    reviewers:
-      - "nginxinc/kic"
-
-  - package-ecosystem: "docker"
-    directory: "/tcp"
-    schedule:
-      interval: weekly
-    reviewers:
-      - "nginxinc/kic"
-
-  - package-ecosystem: "docker"
-    directory: "/udp"
-    schedule:
-      interval: weekly
-    reviewers:
-      - "nginxinc/kic"
-
-  - package-ecosystem: "docker"
-    directory: "/nap-dos"
+    directories:
+      - "**/*"
     schedule:
       interval: weekly
     reviewers:
