@@ -35,6 +35,7 @@ linters:
     - asciicheck
     - bidichk
     - contextcheck
+    - copyloopvar
     - dupword
     - durationcheck
     - err113
@@ -42,7 +43,6 @@ linters:
     - errchkjson
     - errname
     - errorlint
-    - exportloopref
     - fatcontext
     - forcetypeassert
     - gocheckcompilerdirectives

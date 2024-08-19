@@ -1,9 +1,12 @@
 # syntax=docker/dockerfile:1.9
 FROM golang:1.23 AS builder
 
-RUN git clone -b v1.65.0 --depth 1 https://github.com/grpc/grpc-go
-WORKDIR /go/grpc-go/examples
-RUN CGO_ENABLED=0 go build -C helloworld/greeter_server -o /greeter_server
+# renovate: datasource=github-releases depName=grpc/grpc-go
+ARG GRPC_GO_VERSION=v1.65.0
+
+ADD https://github.com/grpc/grpc-go.git#${GRPC_GO_VERSION} /grpc-go
+
+RUN CGO_ENABLED=0 go build -C /grpc-go/examples/helloworld/greeter_server -o /greeter_server
 
 FROM scratch
 COPY --from=builder /greeter_server /

@@ -39,7 +39,7 @@ jobs:
       - name: Build binary
         uses: goreleaser/goreleaser-action@v6
         with:
-          version: latest
+          version: v2.2.0 # renovate: datasource=github-tags depName=goreleaser/goreleaser
           args: build --clean ${{ !startsWith(github.ref, 'refs/tags/') && '--snapshot' || '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -123,6 +123,7 @@ jobs:
           image: ghcr.io/nginxinc/kic-test-${{ matrix.type }}-server:${{ steps.meta.outputs.version }}
           only-fixed: true
           add-cpes-if-none: true
+
       - name: upload Anchore scan SARIF report
         uses: github/codeql-action/upload-sarif@v3
         with:
@@ -189,6 +190,7 @@ jobs:
           image: ghcr.io/nginxinc/kic-test-grpc-server:${{ steps.meta.outputs.version }}
           only-fixed: true
           add-cpes-if-none: true
+
       - name: upload Anchore scan SARIF report
         uses: github/codeql-action/upload-sarif@v3
         with:
@@ -255,6 +257,7 @@ jobs:
           image: ghcr.io/nginxinc/kic-test-dos-server:${{ steps.meta.outputs.version }}
           only-fixed: true
           add-cpes-if-none: true
+
       - name: upload Anchore scan SARIF report
         uses: github/codeql-action/upload-sarif@v3
         with:
