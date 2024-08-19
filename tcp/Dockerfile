@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.5
-FROM golang:1.22-alpine as builder
+FROM golang:1.23-alpine as builder
 
 WORKDIR /go/src/github.com/nginxinc/kic-test-containers/
 COPY tcp/main.go ./tcp/
