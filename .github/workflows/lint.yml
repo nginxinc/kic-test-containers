@@ -14,25 +14,26 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-
   lint:
     name: Lint
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
       - name: Setup Golang Environment
         uses: actions/setup-go@v5
         with:
-          go-version-file: go.mod
+          go-version: stable
+
       - name: Lint Code
         uses: golangci/golangci-lint-action@v6
         with:
-          only-new-issues: true
+          version: v1.60.1 # renovate: datasource=github-tags depName=golangci/golangci-lint
 
   actionlint:
     name: Actionlint
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4

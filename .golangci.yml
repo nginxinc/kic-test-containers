@@ -14,9 +14,9 @@ linters-settings:
       - name: error-strings
       - name: errorf
       - name: exported
-      - name: if-return
       - name: increment-decrement
       - name: indent-error-flow
+      - name: package-comments
       - name: range
       - name: receiver-naming
       - name: redefines-builtin-id
@@ -27,38 +27,66 @@ linters-settings:
       - name: unused-parameter
       - name: var-declaration
       - name: var-naming
-  gocyclo:
-    min-complexity: 15
-
+  govet:
+    enable-all: true
 linters:
-    enable:
+  enable:
+    - asasalint
     - asciicheck
+    - bidichk
+    - contextcheck
+    - copyloopvar
+    - dupword
+    - durationcheck
+    - err113
+    - errcheck
+    - errchkjson
+    - errname
     - errorlint
+    - fatcontext
+    - forcetypeassert
+    - gocheckcompilerdirectives
+    - gochecksumtype
+    - gocritic
     - gocyclo
+    - godot
     - gofmt
     - gofumpt
     - goimports
     - gosec
     - gosimple
+    - gosmopolitan
     - govet
     - ineffassign
+    - intrange
     - makezero
     - misspell
+    - musttag
     - nilerr
     - noctx
+    - nolintlint
+    - perfsprint
+    - prealloc
     - predeclared
-    - promlinter
+    - reassign
     - revive
     - staticcheck
+    - stylecheck
+    - tagalign
+    - tenv
+    - thelper
+    - tparallel
     - typecheck
     - unconvert
     - unparam
     - unused
+    - usestdlibvars
     - wastedassign
-    disable-all: true
+    - whitespace
+    - wrapcheck
+  disable-all: true
 issues:
   max-issues-per-linter: 0
   max-same-issues: 0
-  exclude-use-default: false
 run:
   timeout: 5m

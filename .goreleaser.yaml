@@ -1,3 +1,4 @@
+version: 2
 env:
   - CGO_ENABLED=0
 
@@ -39,3 +40,6 @@ builds:
       - all=-trimpath={{.Env.GOPATH}}
     ldflags:
       - -s -w -X main.version={{.Version}}
+
+changelog:
+  disable: true
