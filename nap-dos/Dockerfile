@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.10
+# syntax=docker/dockerfile:1.11
 FROM python:3.12-alpine
 
 COPY nap-dos/flaskserver.py .
