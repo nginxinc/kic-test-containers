@@ -1,5 +1,5 @@
 # renovate: datasource=github-tags depName=golangci/golangci-lint
-GOLANGCI_LINT_VERSION = v1.61.0
+GOLANGCI_LINT_VERSION = v1.62.2
 
 lint:
 	go run github.com/golangci/golangci-lint/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION) run --fix
