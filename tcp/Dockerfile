@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.11
+# syntax=docker/dockerfile:1.12
 FROM golang:1.23-alpine AS builder
 
 WORKDIR /go/src/github.com/nginxinc/kic-test-containers/

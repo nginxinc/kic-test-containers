@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.11
+# syntax=docker/dockerfile:1.12
 FROM golang:1.23 AS builder
 
 # renovate: datasource=github-releases depName=grpc/grpc-go
